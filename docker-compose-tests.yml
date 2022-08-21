@@ -1,0 +1,19 @@
+services:
+  database_app:
+    image: postgres
+    container_name: database_app
+    restart: always
+    ports:
+      - 4557:5432
+    env_file:
+      - .env.test
+
+  node_api:
+    container_name: node_api
+    build: ./back-end
+    ports:
+      - 5000:5000
+    depends_on:
+      - database_app
+    env_file:
+      - .env.test
