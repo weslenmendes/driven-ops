@@ -6,18 +6,22 @@ async function main() {
   const students = [
     { name: "Diego Pinho" },
     { name: "Bruna Hamori" },
-    { name: "Maria Fernanda" }
-  ]
+    { name: "Maria Fernanda" },
+    { name: "Luana Lessa" },
+    { name: "Weslen" },
+  ];
 
   await prisma.student.createMany({
     data: students,
-    skipDuplicates: true
+    skipDuplicates: true,
   });
 }
 
-main().catch(e => {
-  console.log(e);
-  process.exit(1);
-}).finally(async () => {
-  await prisma.$disconnect();
-})
+main()
+  .catch((e) => {
+    console.log(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
